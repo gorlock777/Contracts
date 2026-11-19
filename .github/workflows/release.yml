@@ -4,6 +4,7 @@ on:
   push:
     branches: ["main"]
     paths: ["featured/**/*.*"]
+  workflow_dispatch:
 
 permissions:
   contents: write

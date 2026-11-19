@@ -2,9 +2,8 @@ name: Sync Fork
 
 on:
   schedule:
- 
-    - cron: '0 */6 * * *
-  workflow_dispatch: 
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -17,12 +16,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.SYNC_PAT }}
 
       - name: Sync with upstream
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote add upstream https://github.com/ORIGINAL_OWNER/Contracts.git
+          git remote add upstream https://github.com/thepeacockproject/Contracts.git
           git fetch upstream
           git checkout main
           git merge upstream/main --ff-only
